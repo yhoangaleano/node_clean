@@ -6,7 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepare": "husky install",
-    "fix:eslint": "lint-staged"
+    "fix:eslint": "lint-staged",
+    "p:fix": "prettier --config ./.prettierrc --write \"src/**/*{.ts,.json}\"",
+    "p:verify": "prettier --config ./.prettierrc --list-different \"src/**/*{.ts,.json}\""
   },
   "keywords": [],
   "author": "",
@@ -22,10 +24,12 @@
     "git-commit-msg-linter": "^4.1.2",
     "husky": "^7.0.0",
     "lint-staged": "^12.4.1",
+    "prettier": "^2.6.2",
     "typescript": "^4.6.4"
   },
   "lint-staged": {
-    "src/**/*.ts": [
+    "src/**/*{.ts,.json}": [
+      "prettier --config ./.prettierrc --write",
       "eslint --fix",
       "git add"
     ]
